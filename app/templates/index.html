@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+
+    <title>AccessArt</title>
+    <h1> AccessArt </h1>
+    <h3> Explore New York's art scene!</h3>
+    <meta charset="utf-8">
+        <!--<link rel="stylesheet" href="{{url_for('static',filename='d3_slider.css')}}" /> -->
+
+
+
+        <style>     
+
+h1 {
+    font-family: "Gill Sans", sans-serif;
+    font-variant: small-caps;
+    color: #FF3B3F;
+    font-size: 2.5em;
+    background-color: #CAEBF2;
+    width: 1130px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+
+h3 {
+    font-family: "Gill Sans", sans-serif;
+    padding-bottom: 20px;
+    color: #565656;
+    background-color: #CAEBF2;
+    margin-top: 0;
+    padding-left: 10px; 
+}
+
+body {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #EFEFEF;
+}
+
+
+#prev, #next {
+    display: inline-block;
+    vertical-align: 900%;
+}
+
+#prev {
+    padding-left: 225px;
+}
+
+img {
+    max-width: 100%;
+    padding-top: 25px;
+}
+
+        </style>
+        
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+
+
+</head>
+
+
+
+
+
+<body>
+
+
+<div id="prev"> 
+    <svg height="50" width="50">
+      <g id="plus" transform="translate(25,25)">
+        <circle r='20' fill='#A9A9A9' stroke='#A9A9A9' stroke-width='2'>
+        </circle>
+        <line x1='-10' y1='0' x2='10' y2='-8' stroke='white' stroke-width='1.5'></line>
+        <line x1='-10' y1='0' x2='10' y2='8' stroke='white' stroke-width='1.5'></line>
+      </g>
+    </svg>
+</div>
+
+
+<a href= "" id="exhibit_page"> <img src="" id="main_display"></a>
+
+
+<div id="next"> 
+    <svg height="50" width="50">
+          <g id="plus" transform="translate(25,25)">
+            <circle r='20' fill='#A9A9A9' stroke='#A9A9A9' stroke-width='2'></circle>
+            <line x1='-10' y1='-8' x2='10' y2='0' stroke='white' stroke-width='1.5'></line>
+            <line x1='-10' y1='8' x2='10' y2='0' stroke='white' stroke-width='1.5'></line>
+          </g>
+    </svg>
+
+</div>
+
+
+<script>  
+
+var data= {{ data|safe }}
+var data_pos= 0
+
+    function update_image() {
+        console.log(data_pos)
+        d3.select("#main_display").attr("src", data[data_pos])
+        d3.select("#exhibit_page")
+            .attr("href", "http://127.0.0.1:5000/exhibit/"+data_pos)
+        
+}
+          
+        d3.select("#main_display")
+            .attr("src", data[data_pos])
+            .attr("height", 400)
+            .attr("preserveAspectRatio")
+
+
+        d3.select("#prev")
+            .on("click", function(d){
+                if (data_pos != 0) {
+                    data_pos -= 1;
+                    update_image()
+                     }
+                })
+
+        d3.select("#next")
+            .on("click", function(d){
+                if (data_pos != data_pos.length - 1){
+                    data_pos += 1; 
+                    update_image()
+                    }
+                })
+</script>
+
+
+    
+</body>        
+
+    
+    
+                
+        

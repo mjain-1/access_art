@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+
+    <title>AccessArt</title>
+
+    <h1> {{ title }} </h1>
+    <div id="chart"></div> <!-- added! -->
+    <meta charset="utf-8">
+        <!--<link rel="stylesheet" href="{{url_for('static',filename='d3_slider.css')}}" /> -->
+        <style>     
+
+h1 {
+    font-family: "Gill Sans", sans-serif;
+    text-align: center;
+    color: #FF3B3F;
+}
+
+
+body {
+    background-color: #EFEFEF;
+}
+
+
+#main_img {
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+#main_details {
+    font-family: "Gill Sans", sans-serif;
+    font-size: 1.25em;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 25px;
+    color: #565656;
+}
+
+
+#recs_title {
+    font-family: "Gill Sans", sans-serif;
+    font-size: 1.5em;
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: 5px 0 20px 0;
+    color: #565656;
+}
+
+
+#container #recs_img1, #recs_img2, #recs_img3 {
+    vertical-align: top;
+    text-align: center;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    padding: 0 30px 0 30px;
+}
+
+
+#container {
+    background-color: #CAEBF2;
+    width: 100%;
+    margin-left: auto; 
+    margin-right: auto;
+
+    text-align: center;
+}   
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}   
+
+.caption {
+    text-align: center;
+    font-family: "Gill Sans", sans-serif;
+    color: #565656;
+    
+}
+
+        </style>
+        
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <!--<script src="{{url_for('static',filename='d3_slider.js')}}"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+
+
+</head>
+
+
+
+
+<body>
+
+
+<div id ="main_details"></div>
+
+<div id ="main_img"></div>
+
+
+<div id ="container">
+    <div id ="recs_title"></div>
+
+    <div id ="recs_img1">
+        <div class="caption"> {{ venue1 }} </div>
+    </div>
+    
+    <div id ="recs_img2">
+        <div class="caption"> {{ venue2 }} </div>
+    </div>
+    
+    <div id ="recs_img3">
+        <div class="caption"> {{ venue3 }} </div>
+    </div>
+
+    <span class="stretch"></span> 
+</div>
+
+<script>  
+
+
+    d3.select("#main_img")
+        .append("img")
+        .attr("src", "{{ url }}")
+        .attr("height", 400)
+        .attr("preserveAspectRatio")
+
+
+    d3.select("#main_details")
+        .append("text")
+        .style("fill", "black")
+        .html("{{ venue }}" + "<br/>" + "Closes " + "{{ end }}")
+        
+
+    d3.select("#recs_title")
+        .append("text")
+        .style("fill", "black")
+        .text("Related Exhibits")
+
+
+    d3.select("#recs_img1")
+        .append("img")
+        .attr("src", "{{ url1 }}")
+        .attr("height", 200)
+        .attr("preserveAspectRatio")
+
+
+    d3.select("#recs_img2")
+        .append("img")
+        .attr("src", "{{ url2 }}")
+        .attr("height", 200)
+        .attr("preserveAspectRatio")
+
+
+    d3.select("#recs_img3")
+        .append("img")
+        .attr("src", "{{ url3 }}")
+        .attr("height", 200)
+        .attr("preserveAspectRatio") 
+
+</script>
+
+    
+</body>        
+
+    
+    
+                
+        
